@@ -4,7 +4,11 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'lightning',
     environment: environment,
-    contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
+    contentSecurityPolicy: {
+      'connect-src': "'self' wss://*.firebaseio.com",
+      'img-src': "'self' https://*.githubusercontent.com",
+      'script-src': "'self' https://*.firebaseio.com"
+    },
     firebase: 'https://embernati-lightning.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',

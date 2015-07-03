@@ -1,3 +1,18 @@
 <h2 id="title">Welcome to Ember.js</h2>
+{{#if session.isAuthenticated}}
+  <div>
+    <img src='{{session.avatar}}' />
+  </div>
+  <div>
+    {{session.username}}
+  </div>
+  <div>
+    <button {{action 'signout'}}>Logout</button>
+  </div>
+{{else}}
+  <div>
+    <button {{action 'signin'}}>Login</button>
+  </div>
+{{/if}}
 
 {{outlet}}
