@@ -5,17 +5,34 @@ export default Ember.Service.extend({
   firebase: Ember.computed(function() {
     return new Firebase(config.firebase);
   }),
+  store: Ember.inject.service(),
+  currentUser: null,
   isAuthenticated: Ember.computed.notEmpty('authData'),
-  username: Ember.computed.alias('authData.github.username'),
-  avatar: Ember.computed.alias('authData.github.cachedUserProfile.avatar_url'),
   authData: Ember.computed({
     get() {
       return JSON.parse(localStorage.getItem('authData'));
     },
     set(key, value) {
       localStorage.setItem('authData', JSON.stringify(value));
+      return value;
     }
   }),
+  loadCurrentUser() {
+    return this.get('store')
+    .find('user', this.get('authData.github.username'))
+    .catch(()=> {
+      return this.get('store')
+      .createRecord('user', {
+        id: this.get('authData.github.username'),
+        username: this.get('authData.github.username'),
+        avatar: this.get('authData.github.cachedUserProfile.avatar_url')
+      })
+      .save();
+    })
+    .then((currentUser)=>{
+      this.set('currentUser', currentUser);
+    });
+  },
   authenticate() {
     return new Ember.RSVP.Promise((resolve, reject)=> {
       this.get('firebase').authWithOAuthPopup('github', (error, authData)=> {
@@ -23,12 +40,16 @@ export default Ember.Service.extend({
           reject(error);
         } else {
           this.set('authData', authData);
-          resolve(authData);
+          resolve();
         }
       });
+    })
+    .then(()=> {
+      return this.loadCurrentUser();
     });
   },
   invalidate() {
-    this.set('authData', '');
+    localStorage.removeItem('authData');
+    window.location = '/';
   }
 });

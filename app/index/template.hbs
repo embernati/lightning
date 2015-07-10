@@ -1,0 +1,15 @@
+<ul>
+  {{#if session.isAuthenticated}}
+    <li>
+      <form {{action 'createNewTopic' on='submit'}}>
+        <input
+          type='text'
+          value={{newTopic}}
+          oninput={{action "newTopicUpdated" value="target.value"}} />
+      </form>
+    </li>
+  {{/if}}
+  {{#each orderedTopics as |topic|}}
+    <li>{{topic-card topic=topic}}</li>
+  {{/each}}
+</ul>

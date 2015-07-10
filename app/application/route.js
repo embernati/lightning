@@ -2,15 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   session: Ember.inject.service(),
+  beforeModel() {
+    if(this.get('session.isAuthenticated')) {
+      return this.get('session').loadCurrentUser();
+    }
+  },
   actions: {
     signin() {
-      this.get('session').authenticate().then(function() {
-        window.location.reload();
-      });
+      this.get('session').authenticate();
     },
     signout() {
-      this.get('session').invalidate();
-      window.location.reload();
+      this.transitionTo('signout');
     }
   }
 });

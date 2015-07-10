@@ -1,0 +1,25 @@
+{{topic.description}}
+{{#if session.isAuthenticated}}
+  <button {{action 'upvote'}}>
+    {{#if isUpvoter}}
+      Upvoted
+    {{else}}
+      Upvote
+    {{/if}}
+  </button>
+{{else}}
+  Upvotes
+{{/if}}
+{{topic.upvoteCount}}
+{{#if session.isAuthenticated}}
+  <button {{action 'volunteer'}}>
+    {{#if isVolunteer}}
+      Volunteered
+    {{else}}
+      Volunteer
+    {{/if}}
+  </button>
+{{else}}
+  Volunteers
+{{/if}}
+{{topic.volunteerCount}}
