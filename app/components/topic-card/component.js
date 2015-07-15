@@ -5,10 +5,10 @@ export default Ember.Component.extend({
 
   session: Ember.inject.service(),
 
-  isUpvoter: Ember.computed('topic.upvoters.[]', function isUpvoter() {
+  isUpvoter: Ember.computed('session.currentUser', 'topic.upvoters.[]', function isUpvoter() {
     return this.get('topic.upvoters').contains(this.get('session.currentUser'));
   }),
-  isVolunteer: Ember.computed('topic.volunteers.[]', function isVolunteer() {
+  isVolunteer: Ember.computed('session.currentUser', 'topic.volunteers.[]', function isVolunteer() {
     return this.get('topic.volunteers').contains(this.get('session.currentUser'));
   }),
 
