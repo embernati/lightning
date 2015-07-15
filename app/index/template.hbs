@@ -1,15 +1,18 @@
-<ul>
-  {{#if session.isAuthenticated}}
+{{#if session.isAuthenticated}}
+  <form {{action 'createNewTopic' on='submit'}}>
+    <input
+      class='new-topic-input'
+      type='text'
+      value={{newTopic}}
+      placeholder='Suggest a Topic'
+      oninput={{action "newTopicUpdated" value="target.value"}} />
+  </form>
+{{/if}}
+<ol class='items'>
+  {{#each orderedTopics as |topic index|}}
     <li>
-      <form {{action 'createNewTopic' on='submit'}}>
-        <input
-          type='text'
-          value={{newTopic}}
-          oninput={{action "newTopicUpdated" value="target.value"}} />
-      </form>
+      <div class='number'>{{base-one-index index}}</div>
+      {{topic-card classNames='topic-card' topic=topic}}
     </li>
-  {{/if}}
-  {{#each orderedTopics as |topic|}}
-    <li>{{topic-card topic=topic}}</li>
   {{/each}}
-</ul>
+</ol>

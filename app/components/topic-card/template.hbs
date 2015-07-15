@@ -1,25 +1,9 @@
-{{topic.description}}
-{{#if session.isAuthenticated}}
-  <button {{action 'upvote'}}>
-    {{#if isUpvoter}}
-      Upvoted
-    {{else}}
-      Upvote
-    {{/if}}
-  </button>
-{{else}}
-  Upvotes
-{{/if}}
-{{topic.upvoteCount}}
-{{#if session.isAuthenticated}}
-  <button {{action 'volunteer'}}>
-    {{#if isVolunteer}}
-      Volunteered
-    {{else}}
-      Volunteer
-    {{/if}}
-  </button>
-{{else}}
-  Volunteers
-{{/if}}
-{{topic.volunteerCount}}
+<div class='description'>{{topic.description}}</div>
+<button class='toggle-button-counter' disabled={{session.notAuthenticated}} {{action 'upvote'}}>
+  <div class='icon upvote {{if isUpvoter 'active'}}'></div>
+  <div class='count'>{{topic.upvoteCount}}</div>
+</button>
+<button class='toggle-button-counter' disabled={{session.notAuthenticated}} {{action 'volunteer'}}>
+  <div class='icon volunteer {{if isVolunteer 'active'}}'></div>
+  <div class='count'>{{topic.volunteerCount}}</div>
+</button>

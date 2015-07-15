@@ -1,0 +1,42 @@
+.toggle-button-counter,
+.toggle-button-counter:focus {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.count {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 7px;
+  font-size: 16px;
+}
+.upvote {
+  background-image: url(/images/upvote-unclicked.svg);
+}
+.toggle-button-counter:not(:disabled) .upvote:hover,
+.upvote.active {
+  background-image: url(/images/upvote-clicked.svg);
+}
+.volunteer {
+  background-image: url(/images/talk-unclicked.svg);
+}
+.toggle-button-counter:not(:disabled) .volunteer:hover,
+.volunteer.active {
+  background-image: url(/images/talk-clicked.svg);
+}
+.description {
+  margin-bottom: .5rem;
+}

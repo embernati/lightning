@@ -8,6 +8,7 @@ export default Ember.Service.extend({
   store: Ember.inject.service(),
   currentUser: null,
   isAuthenticated: Ember.computed.notEmpty('authData'),
+  notAuthenticated: Ember.computed.not('isAuthenticated'),
   authData: Ember.computed({
     get() {
       return JSON.parse(localStorage.getItem('authData'));

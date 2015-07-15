@@ -6,8 +6,10 @@ module.exports = function(environment) {
     environment: environment,
     contentSecurityPolicy: {
       'connect-src': "'self' wss://*.firebaseio.com",
+      'font-src': "'self' http://fonts.gstatic.com",
       'img-src': "'self' https://*.githubusercontent.com",
-      'script-src': "'self' https://*.firebaseio.com"
+      'script-src': "'self' https://*.firebaseio.com",
+      'style-src': "'self' http://fonts.googleapis.com"
     },
     firebase: 'https://embernati-lightning.firebaseio.com/',
     baseURL: '/',
