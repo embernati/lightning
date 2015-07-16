@@ -7,7 +7,6 @@ export default DS.Model.extend({
   upvoters: DS.hasMany('user', { async: true }),
   volunteers: DS.hasMany('user', { async: true }),
 
-  submittedBy: DS.belongsTo('user', { async: true }),
   submittedDate: DS.attr('date'),
 
   upvoteCount: Ember.computed.readOnly('upvoters.length'),
