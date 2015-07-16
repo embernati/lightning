@@ -11,10 +11,9 @@ export default Ember.Service.extend({
   notAuthenticated: Ember.computed.not('isAuthenticated'),
   authData: Ember.computed({
     get() {
-      return JSON.parse(localStorage.getItem('authData'));
+      return this.get('firebase').getAuth();
     },
     set(key, value) {
-      localStorage.setItem('authData', JSON.stringify(value));
       return value;
     }
   }),
@@ -50,7 +49,7 @@ export default Ember.Service.extend({
     });
   },
   invalidate() {
-    localStorage.removeItem('authData');
+    this.get('firebase').unauth();
     window.location = '/';
   }
 });
