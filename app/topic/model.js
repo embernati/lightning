@@ -9,6 +9,9 @@ export default DS.Model.extend({
 
   submittedDate: DS.attr('date'),
 
+  talkDate: DS.attr('date'),
+  talkBy: DS.belongsTo('user', { async: true }),
+
   upvoteCount: Ember.computed.readOnly('upvoters.length'),
   volunteerCount: Ember.computed.readOnly('volunteers.length')
 });

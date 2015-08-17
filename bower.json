@@ -8,10 +8,11 @@
     "ember-load-initializers": "ember-cli/ember-load-initializers#0.1.5",
     "ember-qunit": "0.4.1",
     "ember-qunit-notifications": "0.0.7",
-    "firebase": "^2.1.0",
     "ember-resolver": "~0.1.18",
+    "firebase": "^2.1.0",
     "jquery": "^1.11.1",
     "loader.js": "ember-cli/loader.js#3.2.1",
+    "moment": "~2.10.6",
     "qunit": "~1.18.0"
   }
 }
