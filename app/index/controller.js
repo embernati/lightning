@@ -5,11 +5,10 @@ export default Ember.Controller.extend({
   newTopic: '',
   topicSort: ['talkDate:desc', 'upvoteCount:desc'],
   activeTopics: Ember.computed('model.@each.talkDate', function() {
-    var now = new Date();
-    var todayBeginning = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    var todayBeginning = moment().startOf('day');
     return this.get('model').filter(function(topic) {
       var talkDate = topic.get('talkDate');
-      var talkDateBeginning = talkDate ? new Date(talkDate.getUTCFullYear(), talkDate.getUTCMonth(), talkDate.getUTCDate()) : null;
+      var talkDateBeginning = talkDate ? moment(talkDate).startOf('day') : null;
       return !talkDate || talkDateBeginning >= todayBeginning;
     });
   }),

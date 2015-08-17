@@ -2,6 +2,7 @@
   "predef": [
     "document",
     "Firebase",
+    "moment",
     "window",
     "-Promise"
   ],
