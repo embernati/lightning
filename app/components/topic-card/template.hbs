@@ -1,4 +1,9 @@
-<div class='description'>{{topic.description}}</div>
+<div class='description'>
+  {{#if isNew}}
+    <div class='new'>New!</div>
+  {{/if}}
+  {{topic.description}}
+</div>
 <button class='toggle-button-counter' disabled={{session.notAuthenticated}} {{action 'upvote'}}>
   <div class='icon upvote {{if isUpvoter 'active'}}'></div>
   <div class='count'>{{topic.upvoteCount}}</div>
