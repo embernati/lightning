@@ -10,6 +10,11 @@
     <img class='avatar' alt="{{topic.talkBy.username}}" title="{{topic.talkBy.username}}" src='{{topic.talkBy.avatar}}' />
   </div>
    {{date-format topic.topicDate format="MMMM Do"}}
+   {{#if talkByCurrentUser}}
+     <button class="link-btn" {{action "cancelTalkBy"}}>
+      [{{fa-icon 'times'}}]
+     </button>
+    {{/if}}
 {{else}}
   <button class='toggle-button-counter' disabled={{session.notAuthenticated}} {{action 'upvote'}}>
     <div class='icon upvote {{if isUpvoter 'active'}}'></div>
