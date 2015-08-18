@@ -45,10 +45,9 @@ export default Ember.Component.extend({
         talkDate: date
       });
 
-      this.get('topic').save()
-        .then(() => {
-          this.set('showMeetupDates', false);
-        });
+      this.set('showMeetupDates', false);
+
+      this.get('topic').save();
     },
     cancelTalkBy() {
       this.get('topic').setProperties({ talkBy: null, talkDate: null });
