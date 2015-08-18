@@ -4,11 +4,29 @@
   {{/if}}
   {{topic.description}}
 </div>
-<button class='toggle-button-counter' disabled={{session.notAuthenticated}} {{action 'upvote'}}>
-  <div class='icon upvote {{if isUpvoter 'active'}}'></div>
-  <div class='count'>{{topic.upvoteCount}}</div>
-</button>
-<button class='toggle-button-counter' disabled={{session.notAuthenticated}} {{action 'volunteer'}}>
-  <div class='icon volunteer {{if isVolunteer 'active'}}'></div>
-  <div class='count'>{{topic.volunteerCount}}</div>
-</button>
+
+{{#if topic.talkBy}}
+  <div class="volunteer-container">
+    <img class='avatar' alt="{{topic.talkBy.username}}" title="{{topic.talkBy.username}}" src='{{topic.talkBy.avatar}}' />
+  </div>
+   {{date-format topic.topicDate format="MMMM Do"}}
+{{else}}
+  <button class='toggle-button-counter' disabled={{session.notAuthenticated}} {{action 'upvote'}}>
+    <div class='icon upvote {{if isUpvoter 'active'}}'></div>
+    <div class='count'>{{topic.upvoteCount}}</div>
+  </button>
+  <button class="icon-btn" alt="Claim topic" title="Claim topic" {{action "chooseTalkDate"}} disabled={{session.notAuthenticated}}>
+    {{fa-icon "plus-circle"}}
+  </button>
+{{/if}}
+
+{{#if showMeetupDates}}
+  <div class="meetup-dates-container">
+    <button class="link-btn" {{action "chooseTalkDate" meetupDates.previousMeetup}}>
+      {{date-format meetupDates.previousMeetup format="MMMM"}}
+    </button> or
+    <button class="link-btn" {{action "chooseTalkDate" meetupDates.nextMeetup}}>
+      {{date-format meetupDates.nextMeetup format="MMMM"}}
+    </button>?
+  </div>
+{{/if}}

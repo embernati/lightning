@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   topic: null,
+  showMeetupDates: false,
 
   session: Ember.inject.service(),
   meetupDates: Ember.inject.service(),
@@ -36,6 +37,21 @@ export default Ember.Component.extend({
         this.get('topic.volunteers').pushObject(this.get('session.currentUser'));
       }
       this.get('topic').save();
+    },
+    chooseTalkDate(date) {
+      // we don't currently have a date and the meetup is today.
+      // let them choose a date.
+      if (!date && this.get('meetupDates.isMeetupToday')) return this.toggleProperty('showMeetupDates');
+
+      this.get('topic').setProperties({
+        talkBy: this.get('session.currentUser'),
+        talkDate: date
+      });
+
+      this.get('topic').save()
+        .then(() => {
+          this.set('showMeetupDates', false);
+        })
     }
   }
 });
