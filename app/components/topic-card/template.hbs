@@ -9,10 +9,10 @@
   <div class="volunteer-container">
     <img class='avatar' alt="{{topic.talkBy.username}}" title="{{topic.talkBy.username}}" src='{{topic.talkBy.avatar}}' />
   </div>
-   {{date-format topic.topicDate format="MMMM Do"}}
+   {{date-format topic.talkDate format="MMMM Do"}}
    {{#if talkByCurrentUser}}
-     <button class="link-btn" {{action "cancelTalkBy"}}>
-      [{{fa-icon 'times'}}]
+     <button class="icon-btn" alt="Cancel talk" title="Cancel talk" {{action "cancelTalkBy"}}>
+      {{fa-icon 'calendar-times-o'}}
      </button>
     {{/if}}
 {{else}}
@@ -21,7 +21,7 @@
     <div class='count'>{{topic.upvoteCount}}</div>
   </button>
   <button class="icon-btn" alt="Claim topic" title="Claim topic" {{action "chooseTalkDate"}} disabled={{session.notAuthenticated}}>
-    {{fa-icon "plus-circle"}}
+    {{fa-icon "calendar-plus-o"}}
   </button>
 {{/if}}
 
