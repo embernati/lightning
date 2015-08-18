@@ -45,3 +45,22 @@
   text-transform: uppercase;
   color: #ff9900;
 }
+.volunteer-container {
+  border-radius: 25px;
+  display: inline-block;
+  height: 30px;
+  overflow: hidden;
+  width: 30px;
+
+  & img {
+    height: 100%;
+    width: 100%;
+  }
+}
+.meetup-dates-container {
+  display: inline-block;
+  height: 20px;
+  padding: 10px 0;
+  position: relative;
+  top: -5px;
+}

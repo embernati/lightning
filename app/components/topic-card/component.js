@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   topic: null,
+  showMeetupDates: false,
 
   session: Ember.inject.service(),
   meetupDates: Ember.inject.service(),
@@ -14,8 +15,11 @@ export default Ember.Component.extend({
   isUpvoter: Ember.computed('session.currentUser', 'topic.upvoters.[]', function isUpvoter() {
     return this.get('topic.upvoters').contains(this.get('session.currentUser'));
   }),
-  isVolunteer: Ember.computed('session.currentUser', 'topic.volunteers.[]', function isVolunteer() {
-    return this.get('topic.volunteers').contains(this.get('session.currentUser'));
+  talkByCurrentUser: Ember.computed('session.currentUser.username', 'topic.talkBy.username', function talkByCurrentUser() {
+    return this.get('session.currentUser.username') === this.get('topic.talkBy.username');
+  }),
+  today: Ember.computed(function today() {
+    return moment().startOf('day').toDate();
   }),
 
   actions: {
@@ -28,13 +32,28 @@ export default Ember.Component.extend({
       }
       this.get('topic').save();
     },
-    volunteer() {
-      if(this.get('isVolunteer')) {
-        this.get('topic.volunteers').removeObject(this.get('session.currentUser'));
+    chooseTalkDate(date) {
+      // we don't currently have a date and the meetup is today.
+      // let them choose a date.
+      if (!date && this.get('meetupDates.isMeetupToday')) {
+        return this.toggleProperty('showMeetupDates');
       }
-      else {
-        this.get('topic.volunteers').pushObject(this.get('session.currentUser'));
+
+      if (!date && !this.get('meetupDates.isMeetupToday')) {
+        date = this.get('meetupDates.nextMeetup');
       }
+
+      this.get('topic').setProperties({
+        talkBy: this.get('session.currentUser'),
+        talkDate: date
+      });
+
+      this.set('showMeetupDates', false);
+
+      this.get('topic').save();
+    },
+    cancelTalkBy() {
+      this.get('topic').setProperties({ talkBy: null, talkDate: null });
       this.get('topic').save();
     }
   }
