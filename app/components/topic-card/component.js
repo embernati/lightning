@@ -18,6 +18,9 @@ export default Ember.Component.extend({
   talkByCurrentUser: Ember.computed('session.currentUser', 'topic.talkBy', function() {
     return this.get('session.currentUser.username') === this.get('topic.talkBy.username');
   }),
+  today: Ember.computed(function today() {
+    return moment().startOf('day').toDate();
+  }),
 
   actions: {
     upvote() {
