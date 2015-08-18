@@ -10,11 +10,7 @@
   <div class='count'>{{topic.upvoteCount}}</div>
 </button>
 
-{{#unless topic.talkBy}}
-  <button class="icon-btn" alt="Claim topic" title="Claim topic" {{action "chooseTalkDate"}} disabled={{session.notAuthenticated}}>
-    {{fa-icon "calendar-plus-o"}}
-  </button>
-{{else}}
+{{#if topic.talkBy}}
   <div class="volunteer-container">
     <img class='avatar' alt="{{topic.talkBy.username}}" title="{{topic.talkBy.username}}" src='{{topic.talkBy.avatar}}' />
   </div>
@@ -24,7 +20,11 @@
       {{fa-icon 'calendar-times-o'}}
      </button>
     {{/if}}
-{{/unless}}
+{{else}}
+  <button class="icon-btn" alt="Claim topic" title="Claim topic" {{action "chooseTalkDate"}} disabled={{session.notAuthenticated}}>
+    {{fa-icon "calendar-plus-o"}}
+  </button>
+{{/if}}
 
 {{#if showMeetupDates}}
   <div class="meetup-dates-container">
