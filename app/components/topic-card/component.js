@@ -36,6 +36,10 @@ export default Ember.Component.extend({
         return this.toggleProperty('showMeetupDates');
       }
 
+      if (!date && !this.get('meetupDates.isMeetupToday')) {
+        date = this.get('meetupDates.nextMeetup');
+      }
+
       this.get('topic').setProperties({
         talkBy: this.get('session.currentUser'),
         talkDate: date
