@@ -32,7 +32,9 @@ export default Ember.Component.extend({
     chooseTalkDate(date) {
       // we don't currently have a date and the meetup is today.
       // let them choose a date.
-      if (!date && this.get('meetupDates.isMeetupToday')) return this.toggleProperty('showMeetupDates');
+      if (!date && this.get('meetupDates.isMeetupToday')) {
+        return this.toggleProperty('showMeetupDates');
+      }
 
       this.get('topic').setProperties({
         talkBy: this.get('session.currentUser'),
@@ -42,7 +44,7 @@ export default Ember.Component.extend({
       this.get('topic').save()
         .then(() => {
           this.set('showMeetupDates', false);
-        })
+        });
     },
     cancelTalkBy() {
       this.get('topic').setProperties({ talkBy: null, talkDate: null });
