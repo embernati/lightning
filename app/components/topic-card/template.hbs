@@ -5,8 +5,12 @@
   {{topic.description}}
 </div>
 
-<button class='toggle-button-counter' disabled={{session.notAuthenticated}} {{action 'upvote'}}>
-  <div class='icon upvote {{if isUpvoter 'active'}}'></div>
+<button class='upvote icon-btn {{if isUpvoter 'active'}}' disabled={{session.notAuthenticated}} {{action 'upvote'}}>
+  {{#if isUpvoter}}
+    {{fa-icon "thumbs-up"}}
+  {{else}}
+    {{fa-icon "thumbs-o-up"}}
+  {{/if}}
   <div class='count'>{{topic.upvoteCount}}</div>
 </button>
 
@@ -14,12 +18,14 @@
   <div class="volunteer-container">
     <img class='avatar' alt="{{topic.talkBy.username}}" title="{{topic.talkBy.username}}" src='{{topic.talkBy.avatar}}' />
   </div>
-   {{date-format topic.talkDate format="MMMM Do"}}
-   {{#if talkByCurrentUser}}
-     <button class="icon-btn" alt="Cancel talk" title="Cancel talk" {{action "cancelTalkBy"}}>
-      {{fa-icon 'calendar-times-o'}}
-     </button>
-    {{/if}}
+  <div class='talk-date'>
+    {{date-format topic.talkDate format="MMMM Do"}}
+  </div>
+  {{#if talkByCurrentUser}}
+    <button class="cancel icon-btn" alt="Cancel talk" title="Cancel talk" {{action "cancelTalkBy"}}>
+     {{fa-icon 'calendar-times-o'}}
+    </button>
+  {{/if}}
 {{else}}
   <button class="icon-btn" alt="Claim topic" title="Claim topic" {{action "chooseTalkDate"}} disabled={{session.notAuthenticated}}>
     {{fa-icon "calendar-plus-o"}}

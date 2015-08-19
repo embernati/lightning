@@ -1,41 +1,11 @@
-.toggle-button-counter,
-.toggle-button-counter:focus {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background-color: transparent;
-
-  &:disabled {
-    cursor: default;
-  }
-}
-
-.icon {
-  width: 30px;
-  height: 30px;
-  background-size: 30px 30px;
-  background-repeat: no-repeat;
-  display: inline-block;
+.upvote.icon-btn {
+  padding-right: 1em;
 }
 .count {
   display: inline-block;
   vertical-align: top;
-  padding-top: 7px;
+  padding-top: 12px;
   font-size: 16px;
-}
-.upvote {
-  background-image: url(/images/upvote-unclicked.svg);
-}
-.toggle-button-counter:not(:disabled) .upvote:hover,
-.upvote.active {
-  background-image: url(/images/upvote-clicked.svg);
-}
-.volunteer {
-  background-image: url(/images/talk-unclicked.svg);
-}
-.toggle-button-counter:not(:disabled) .volunteer:hover,
-.volunteer.active {
-  background-image: url(/images/talk-clicked.svg);
 }
 .description {
   margin-bottom: .5rem;
@@ -48,13 +18,28 @@
 .volunteer-container {
   border-radius: 25px;
   display: inline-block;
-  height: 30px;
+  height: 35px;
   overflow: hidden;
-  width: 30px;
+  width: 35px;
+  vertical-align: top;
+  margin-top: 2px;
 
-  & img {
+  img {
     height: 100%;
     width: 100%;
+  }
+}
+.talk-date {
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 11px;
+}
+.cancel.icon-btn {
+  vertical-align: top;
+  margin: 6px 0 0 .5em;
+
+  i {
+    font-size: 26px;
   }
 }
 .meetup-dates-container {

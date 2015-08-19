@@ -1,5 +1,8 @@
 @import "bower_components/font-awesome/scss/font-awesome";
 
+$blue-purple: #333366;
+$grey: #ccc;
+
 /* reset */
 html {
   -webkit-box-sizing: border-box;
@@ -95,14 +98,14 @@ body {
 .new-topic-input {
   width: 100%;
   font-size: 1.5em;
-  color: #333366;
+  color: $blue-purple;
   padding: .5em;
-  border: 2px solid #cccccc;
+  border: 2px solid $grey;
   margin-bottom: 1rem;
 
   &:hover,
   &:focus {
-    border-color: #333366;
+    border-color: $blue-purple;
     outline: none;
   }
 }
@@ -113,7 +116,7 @@ body {
   margin: 0;
 }
 .items li {
-  border-bottom: 2px solid #cccccc;
+  border-bottom: 2px solid $grey;
   margin: 0 0 1rem 0;
   padding-bottom: 1rem;
 }
@@ -122,7 +125,7 @@ body {
   display: inline-block;
   vertical-align: top;
   width: 40px;
-  color: #cccccc;
+  color: $grey;
   font-size: 1.75em;
   margin-top: -.2em;
 }
@@ -130,16 +133,23 @@ body {
   display: inline-block;
 }
 .icon-btn {
+  cursor: pointer;
   background: none;
+  outline: none;
   border: 0;
-  color: #ccc;
+  color: $grey;
   height: auto;
   margin: 0;
   padding: 0;
   width: auto;
 
-  &:hover {
-    color: #000;
+  &.active,
+  &:hover:not(:disabled) {
+    color: $blue-purple;
+  }
+
+  &:disabled {
+    cursor: default;
   }
 
   i {
@@ -147,7 +157,10 @@ body {
   }
 }
 .link-btn {
+  cursor: pointer;
+  color: $blue-purple;
   background: none;
+  outline: none;
   border: 0;
   font-size: inherit;
   font-weight: bold;
