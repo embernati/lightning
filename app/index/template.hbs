@@ -1,11 +1,18 @@
 {{#if session.isAuthenticated}}
   <form {{action 'createNewTopic' on='submit'}}>
-    <input
-      class='new-topic-input'
-      type='text'
-      value={{newTopic}}
-      placeholder='Suggest a Topic'
-      oninput={{action "newTopicUpdated" value="target.value"}} />
+    <div class='new-topic-container'>
+      {{#if newTopic}}
+        <button type='submit' class='new-topic-submit'>
+          {{fa-icon "fa-plus-square"}}
+        </button>
+      {{/if}}
+      <input
+        class='new-topic-input'
+        type='text'
+        value={{newTopic}}
+        placeholder='Suggest a Topic'
+        oninput={{action "newTopicUpdated" value="target.value"}} />
+    </div>
   </form>
 {{/if}}
 <ol class='items'>
