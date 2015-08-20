@@ -1,5 +1,4 @@
-import { skip } from 'qunit';
-import { moduleForComponent } from 'ember-qunit';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 
@@ -7,22 +6,20 @@ moduleForComponent('topic-card', 'Integration | Component | topic card', {
   integration: true
 });
 
-skip('it renders', function(assert) {
-  assert.expect(2);
+test('it renders', function(assert) {
+  assert.expect(4);
+  this.render(hbs`{{topic-card topic=testTopic}}`);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  var submittedDate = new Date(1);
 
-  this.render(hbs`{{topic-card}}`);
+  this.set('testTopic', { description: '', submittedDate: submittedDate });
+  assert.equal(this.$('.description').text().trim(), '');
 
-  assert.equal(this.$().text(), '');
+  this.set('testTopic', { description: 'Explain how to integration test better', submittedDate: submittedDate });
+  assert.equal(this.$('.description').text().trim(), 'Explain how to integration test better');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#topic-card}}
-      template block text
-    {{/topic-card}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.set('testTopic', { description: 'Now Test', submittedDate: new Date() });
+  var descriptionText = this.$('.description').text();
+  assert.ok(descriptionText.indexOf('Now Test') !== -1);
+  assert.ok(descriptionText.indexOf('New!') !== -1);
 });
