@@ -95,6 +95,9 @@ body {
   padding: 1rem;
 }
 
+.new-topic-container {
+  position: relative;
+}
 .new-topic-input {
   width: 100%;
   font-size: 1.5em;
@@ -107,6 +110,21 @@ body {
   &:focus {
     border-color: $blue-purple;
     outline: none;
+  }
+}
+.new-topic-submit {
+  border: 0;
+  padding: 0;
+  background: none;
+  font-size: 40px;
+  color: #2FBD5B;
+  position: absolute;
+  right: 0;
+  margin: 3px 12px;
+  cursor: pointer;
+
+  &:hover {
+    color: #1C9441;
   }
 }
 
