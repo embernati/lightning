@@ -13,7 +13,8 @@ export default Ember.Component.extend({
     return submittedDate.isAfter(endOfPreviousMeetup);
   }),
   isUpvoter: Ember.computed('session.currentUser', 'topic.upvoters.[]', function isUpvoter() {
-    return this.get('topic.upvoters').contains(this.get('session.currentUser'));
+    var upvoters = this.get('topic.upvoters') || [];
+    return upvoters.contains(this.get('session.currentUser'));
   }),
   talkByCurrentUser: Ember.computed('session.currentUser.username', 'topic.talkBy.username', function talkByCurrentUser() {
     return this.get('session.currentUser.username') === this.get('topic.talkBy.username');
