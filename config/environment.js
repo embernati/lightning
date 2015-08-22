@@ -11,7 +11,7 @@ module.exports = function(environment) {
       'script-src': "'self' https://*.firebaseio.com",
       'style-src': "'self' http://fonts.googleapis.com"
     },
-    firebase: 'https://embernati-lightning.firebaseio.com/',
+    firebase: 'https://dev-ember-lightning.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -27,14 +27,6 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-  }
-
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
@@ -48,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.firebase = 'https://embernati-lightning.firebaseio.com/'
   }
 
   return ENV;
