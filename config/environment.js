@@ -40,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.firebase = 'https://embernati-lightning.firebaseio.com/'
+    ENV.firebase = 'https://embernati-lightning.firebaseio.com/';
   }
 
   return ENV;
