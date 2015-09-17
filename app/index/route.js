@@ -12,6 +12,9 @@ export default Ember.Route.extend({
         submittedDate: new Date()
       }).save();
       this.set('controller.newTopic', '');
+    },
+    updateTopic(topic) {
+      topic.save();
     }
   }
 });
