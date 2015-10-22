@@ -12,10 +12,5 @@ export default Ember.Controller.extend({
       return !talkDate || talkDateBeginning >= todayBeginning;
     });
   }),
-  orderedTopics: Ember.computed.sort('activeTopics', 'topicSort'),
-  actions: {
-    newTopicUpdated(val) {
-      this.set('newTopic', val);
-    }
-  }
+  orderedTopics: Ember.computed.sort('activeTopics', 'topicSort')
 });
