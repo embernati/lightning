@@ -6,12 +6,13 @@
           {{fa-icon "fa-plus-square"}}
         </button>
       {{/if}}
-      <input
+      {{input
         class='new-topic-input'
         type='text'
-        value={{newTopic}}
+        value=newTopic
         placeholder='Suggest a Topic'
-        oninput={{action "newTopicUpdated" value="target.value"}} />
+        key-press='newTopicUpdated'
+        value=target.value }}
     </div>
   </form>
 {{/if}}
