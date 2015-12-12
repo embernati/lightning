@@ -31,7 +31,7 @@ export default Ember.Component.extend({
       else {
         this.get('topic.upvoters').pushObject(this.get('session.currentUser'));
       }
-      this.get('topic').save();
+      this.sendAction('topicUpdated', this.get('topic'));
     },
     chooseTalkDate(date) {
       // we don't currently have a date and the meetup is today.
@@ -51,11 +51,11 @@ export default Ember.Component.extend({
 
       this.set('showMeetupDates', false);
 
-      this.get('topic').save();
+      this.sendAction('topicUpdated', this.get('topic'));
     },
     cancelTalkBy() {
       this.get('topic').setProperties({ talkBy: null, talkDate: null });
-      this.get('topic').save();
+      this.sendAction('topicUpdated', this.get('topic'));
     }
   }
 });

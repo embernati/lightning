@@ -1,6 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
+import Ember from 'ember';
 
 moduleForComponent('topic-card', 'Integration | Component | topic card', {
   integration: true
@@ -22,4 +22,22 @@ test('it renders', function(assert) {
   var descriptionText = this.$('.description').text();
   assert.ok(descriptionText.indexOf('Now Test') !== -1);
   assert.ok(descriptionText.indexOf('New!') !== -1);
+});
+
+test('upvoting adds a user to the upvoters list', function(assert) {
+  this.set('testTopic', { upvoters: Ember.A() });
+  this.render(hbs`{{topic-card topic=testTopic}}`);
+  this.$('.upvote.icon-btn').click();
+  assert.ok(this.$('.fa.fa-thumbs-up').length === 1);
+  assert.ok(this.$('.fa.fa-thumbs-o-up').length === 0);
+  assert.ok(this.get('testTopic.upvoters.length') === 1);
+});
+
+test('a user can remove their upvote', function(assert) {
+  this.set('testTopic', { upvoters: Ember.A([null]) });
+  this.render(hbs`{{topic-card topic=testTopic}}`);
+  this.$('.upvote.icon-btn').click();
+  assert.ok(this.$('.fa.fa-thumbs-up').length === 0);
+  assert.ok(this.$('.fa.fa-thumbs-o-up').length === 1);
+  assert.ok(this.get('testTopic.upvoters.length') === 0);
 });

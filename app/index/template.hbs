@@ -18,7 +18,7 @@
   {{#each orderedTopics as |topic index|}}
     <li>
       <div class='number'>{{base-one-index index}}</div>
-      {{topic-card classNames='topic-card' topic=topic}}
+      {{topic-card classNames='topic-card' topic=topic topicUpdated='updateTopic'}}
     </li>
   {{/each}}
 </ol>
